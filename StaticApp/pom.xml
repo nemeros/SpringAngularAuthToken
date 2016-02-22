@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.nemeros.web</groupId>
+		<artifactId>SpringAngularAuth</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<!-- Description du Projet -->
+	<artifactId>staticApp</artifactId>
+	<version>1.0.0</version>
+	<name>staticApp</name>
+	<packaging>war</packaging>
+
+	
+	<build>
+		<plugins>
+			<plugin>
+			  <groupId>org.codehaus.mojo</groupId>
+			  <artifactId>exec-maven-plugin</artifactId>
+			  <executions>
+				<execution>
+				  <id>exec-npm-install</id>
+				  <phase>install</phase>
+				  <configuration>
+					<executable>npm</executable>
+					<arguments>
+					  <argument>install</argument>
+					</arguments>
+				  </configuration>
+				  <goals>
+					<goal>exec</goal>
+				  </goals>
+				</execution>
+				<execution>
+				  <id>exec-bower-install</id>
+				  <phase>install</phase>
+				  <configuration>
+					<executable>bower</executable>
+					<arguments>
+					  <argument>install</argument>
+					</arguments>
+				  </configuration>
+				  <goals>
+					<goal>exec</goal>
+				  </goals>
+				</execution>
+			  </executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+				  <execution>
+					<id>copy-resources</id>
+					<!-- here the phase you need -->
+					<phase>install</phase>
+					<goals>
+					  <goal>copy-resources</goal>
+					</goals>
+					<configuration>
+					  <outputDirectory>${basedir}/src/main/webapp/static</outputDirectory>
+					  <resources>          
+						<resource>
+						  <directory>${basedir}/bower_components/</directory>
+						  <filtering>false</filtering>
+						</resource>
+					  </resources>              
+					</configuration>            
+				  </execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+		        <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-logging</artifactId>
+		        </exclusion>
+		    </exclusions>
+        </dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-log4j</artifactId>
+		</dependency>
+	</dependencies>
+</project>

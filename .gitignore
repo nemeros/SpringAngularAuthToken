@@ -1,0 +1,11 @@
+/StaticApp/.settings
+/StaticApp/bower_components
+/StaticApp/node_modules
+/StaticApp/target
+/StaticApp/.classpath
+/StaticApp/.project
+/StaticApp/src/main/webapp/static/**
+/RestApp/.settings
+/RestApp/target
+/RestApp/.classpath
+/RestApp/.project

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+<!-- header code -->
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/dist/css/bootstrap-theme.min.css">
+    <title>Menu Dynamic</title>
+</head>
+	<body role="document" data-ng-cloak>
+		<div data-ui-view="navbar"></div>	
+		<div class="container" role="main" style="margin-top:80px">	
+			<div class="container">
+				<div data-ui-view="content"></div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="static/jquery/dist/jquery.min.js"></script>
+	    <script type="text/javascript" src="static/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="static/angular/angular.min.js"></script>
+		<script type="text/javascript" src="static/angular-resource/angular-resource.min.js"></script>
+		<script type="text/javascript" src="static/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script type="text/javascript" src="static/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script type="text/javascript" src="static/ngstorage/ngStorage.min.js"></script>
+	<!-- 	<script type="text/javascript" src="static/angular-route/angular-route.min.js"></script> -->
+	
+	
+	
+	
+		<script type="text/javascript" src="scripts/app/app.js"></script>
+		<script type="text/javascript" src="scripts/components/navbar/NavBarController.js"></script>
+		<script type="text/javascript" src="scripts/app/main/main.js"></script>
+		
+		
+		<script type="text/javascript" src="scripts/app/admin/admin.js"></script>
+		<!-- Login -->
+		<script type="text/javascript" src="scripts/app/login/login.js"></script>
+		<script type="text/javascript" src="scripts/app/login/loginController.js"></script>
+		<!-- User Management -->
+		<script type="text/javascript" src="scripts/app/admin/user/user-management.js"></script>
+		<!-- Role Management -->
+		<script type="text/javascript" src="scripts/app/admin/role/role-management.js"></script>
+		<script type="text/javascript" src="scripts/app/admin/role/RoleManagementCtrl.js"></script>
+		<script type="text/javascript" src="scripts/app/admin/role/RoleManagementDialogController.js"></script>
+		
+		<!-- Service -->
+		<script type="text/javascript" src="scripts/components/role/RoleService.js"></script>
+	</body>
+</html>
