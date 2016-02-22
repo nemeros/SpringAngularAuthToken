@@ -17,7 +17,7 @@ angular.module('myApp', ['ngResource', 'ui.router', 'ui.bootstrap', 'ngStorage']
 	})
 	.config(function($httpProvider, $localStorageProvider){
 		function getKey(key){return $localStorageProvider.get(key)};
-		
+		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 		$httpProvider.defaults.headers.common["X-AUTH-TOKEN"] = getKey('token');
 		
 		
