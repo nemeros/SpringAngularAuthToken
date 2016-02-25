@@ -11,12 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CORSFilter implements Filter{
 
 	@Override
@@ -30,20 +27,17 @@ public class CORSFilter implements Filter{
 			throws IOException, ServletException {
 		
 		
-		HttpServletResponse response = (HttpServletResponse) res;
-		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse httpresponse = (HttpServletResponse) res;
+		HttpServletRequest httpRequest = (HttpServletRequest) req;
 		
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers","Content-Type, Accept, X-Requested-With, X-Auth-Token, x-requested-with, X-AUTH-TOKEN, x-auth-token");
+		httpresponse.setHeader("Access-Control-Allow-Origin", "*");
+		httpresponse.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
+		httpresponse.setHeader("Access-Control-Max-Age", "3600");
+		httpresponse.setHeader("Access-Control-Allow-Headers","Content-Type, Accept, X-Requested-With, X-AUTH-TOKEN");
         
-        if (!"OPTIONS".equals(request.getMethod())) {
+        if (!"OPTIONS".equals(httpRequest.getMethod())) {
         	chain.doFilter(req, res);
-		} else {
-		}
-		
-        //chain.doFilter(req, response);
+		} 
 	}
 
 	@Override

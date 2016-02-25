@@ -15,12 +15,12 @@
 
         <div class="form-group">
             <label class="control-label">Nom</label>
-            <input type="text" class="form-control" name="nom"
-                   ng-model="user.nom" ng-required="true" ng-maxlength="50">
+            <input type="text" class="form-control" name="nom" ng-model="role.nom"
+                    ng-required="true" ng-maxlength="50">
 
             <div ng-show="editRoleForm.nom.$invalid">
                 <p class="help-block"
-                   ng-show="editRoleForm.nom.$error.required" >
+                   ng-show="editRoleForm.role.$error.required" >
                     This field is required.
                 </p>
 

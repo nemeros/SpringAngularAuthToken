@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.security.TokenService;
 
+@Component
 public class JwtFilter extends OncePerRequestFilter {
 	
 	private static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
@@ -38,6 +40,8 @@ public class JwtFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(null);		
 			}		
 		}
+		
+		fc.doFilter(request, response);
 	}
 
 }

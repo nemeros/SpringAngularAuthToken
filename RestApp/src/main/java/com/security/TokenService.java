@@ -1,6 +1,7 @@
 package com.security;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class TokenService {
 		}
 		
 		JwtUser jwtUser = new JwtUser(new User(jws.getBody().getSubject(), "", lg), token);
+		jwtUser.setAuthenticated(true);
 		
 		return jwtUser;
 	}
@@ -49,8 +51,15 @@ public class TokenService {
 	 * @return
 	 */
 	public String createTokenForUser(User user){
+		Collection<GrantedAuthority> lGranted = user.getAuthorities();
+		List<String> lFormated = new ArrayList<String>();
+		
+		for(GrantedAuthority sga : lGranted){
+			lFormated.add(sga.getAuthority());
+		}
+		
 		return Jwts.builder().setSubject(user.getUsername())
-			.claim("roles", user.getAuthorities().toArray())
+			.claim("roles", lFormated.toArray())
 			.setIssuedAt(new Date())
 			.signWith(SignatureAlgorithm.HS256, secret).compact();
 	}

@@ -1,5 +1,6 @@
 package com;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,6 +16,8 @@ import com.filter.JwtFilter;
 @EnableWebSecurity
 public class SecurityConf extends WebSecurityConfigurerAdapter {
 	
+	@Autowired 
+	JwtFilter jwtFilter;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -25,7 +28,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 				.antMatchers("/auth").permitAll()
 				.anyRequest().authenticated()
 			.and()
-				//.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class)
-				.addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class);
+				.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class)
+				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 	}	
 }

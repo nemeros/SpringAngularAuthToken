@@ -23,7 +23,8 @@ angular.module('myApp')
                     resolve: {
                         roleEntity: function () {
                             return {
-                                id: null, nom: null
+                                id: null, 
+                                nom: null
                             };
                         }
                     }
