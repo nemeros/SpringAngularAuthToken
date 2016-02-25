@@ -7,6 +7,9 @@
             Create or edit a Role</h4>
     </div>
     <div class="modal-body">
+    	<div class="alert alert-danger" data-nf-cloak data-ng-show="error" role="alert">
+    		<span>{{error}}</span>
+    	</div>
         <div class="form-group">
             <label>ID</label>
             <input type="text" class="form-control" name="id"

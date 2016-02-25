@@ -49,7 +49,10 @@ public class AuthService {
 			}else if(req.nom.equals("user")){
 				lg.add(new SimpleGrantedAuthority("USER"));
 				usr = new User(req.nom, "", lg);
-			}			
+			}else if(req.nom.equals("guest")){
+				lg.add(new SimpleGrantedAuthority("GUEST"));
+				usr = new User(req.nom, "", lg);
+			}
 			
 			
 			try{

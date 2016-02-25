@@ -6,15 +6,19 @@ angular.module('myApp')
 	    ['$scope', '$log', '$stateParams', '$uibModalInstance', 'roleEntity', 'Role',
 	        function($scope, $log, $stateParams, $uibModalInstance, roleEntity, Role) {
 
+	    	$scope.error = null;
+	    	
 	        $scope.role = roleEntity;
 
 	        var onSaveSuccess = function (result) {
 	            $scope.isSaving = false;
+	            $scope.error = null;
 	            $uibModalInstance.close(result);
 	        };
 
 	        var onSaveError = function (result) {
 	            $scope.isSaving = false;
+	            $scope.error = result.data.message;
 	        };
 
 	        $scope.save = function () {

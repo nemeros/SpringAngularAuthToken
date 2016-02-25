@@ -5,16 +5,19 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 
 @Service
 public class TokenService {
@@ -27,20 +30,25 @@ public class TokenService {
 	 * @return
 	 */
 	public Authentication parseUserFromJwtToken(String token){
-		Jws<Claims> jws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+		JwtUser jwtUser = null;
 		
-		
-		List<String> lRole = (ArrayList<String>) jws.getBody().get("roles");
-		
-		List<GrantedAuthority> lg = new ArrayList<GrantedAuthority>();
-		
-		for(String role : lRole){
-			lg.add(new SimpleGrantedAuthority(role));
+		try{
+			Jws<Claims> jws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+			
+			
+			List<String> lRole = (ArrayList<String>) jws.getBody().get("roles");
+			
+			List<GrantedAuthority> lg = new ArrayList<GrantedAuthority>();
+			
+			for(String role : lRole){
+				lg.add(new SimpleGrantedAuthority(role));
+			}
+			
+			jwtUser = new JwtUser(new User(jws.getBody().getSubject(), "", lg), token);
+			jwtUser.setAuthenticated(true);
+		}catch (SignatureException sie){
+			throw new AccessDeniedException("Jwt Non valide", sie);
 		}
-		
-		JwtUser jwtUser = new JwtUser(new User(jws.getBody().getSubject(), "", lg), token);
-		jwtUser.setAuthenticated(true);
-		
 		return jwtUser;
 	}
 	

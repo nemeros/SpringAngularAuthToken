@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -34,8 +37,15 @@ public class JwtFilter extends OncePerRequestFilter {
 			String token = httpRequest.getHeader(AUTH_HEADER_NAME);
 			
 			if(token != null){
-				Authentication authentication = tokenService.parseUserFromJwtToken(token);
-				SecurityContextHolder.getContext().setAuthentication(authentication);
+				try{
+					Authentication authentication = tokenService.parseUserFromJwtToken(token);
+					SecurityContextHolder.getContext().setAuthentication(authentication);
+				}catch(AccessDeniedException ade){
+					AccessDeniedHandler acc = new AccessDeniedHandlerImpl();
+					acc.handle(request, response, ade);
+					return;
+				}
+				
 			}else{
 				SecurityContextHolder.getContext().setAuthentication(null);		
 			}		

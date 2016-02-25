@@ -1,10 +1,13 @@
 package com.service;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,8 +67,9 @@ public class RoleService {
 	 * @param role
 	 * @return
 	 */
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Role> createRole(@Valid @RequestBody(required=true) Role role){
+	public ResponseEntity<Role> createRole(@Valid @RequestBody(required=true) Role role, Principal p){
 		roleDao.save(role);		
 		return new ResponseEntity<Role>(roleDao.findOne(role.getId()), HttpStatus.CREATED);
 	}

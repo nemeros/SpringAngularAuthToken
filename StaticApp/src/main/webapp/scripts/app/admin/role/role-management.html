@@ -1,19 +1,24 @@
 <div class="container">
-	<div><button type="button" class="btn btn-info" data-ui-sref="role-management.new">Create</button></div>
-	<div>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th class="col-md-2">id</th>
-					<th class="col-md-2">nom</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="role in roles">
-					<td>{{role.id}}</td>
-					<td>{{role.nom}}</td>
-				</tr>
-			</tbody>
-		</table>
+	<div data-ng-show="!error" data-ng-cloak>
+		<div><button type="button" class="btn btn-info" data-ui-sref="role-management.new">Create</button></div>
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="col-md-2">id</th>
+						<th class="col-md-2">nom</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="role in roles">
+						<td>{{role.id}}</td>
+						<td>{{role.nom}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="alert alert-danger" role="alert" data-ng-cloak data-ng-show="error">
+		{{error}}
 	</div>
 </div>
