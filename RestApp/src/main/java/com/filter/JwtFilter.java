@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.security.TokenService;
@@ -36,7 +37,7 @@ public class JwtFilter extends OncePerRequestFilter {
 			//Extract X-AUTH-TOKEN
 			String token = httpRequest.getHeader(AUTH_HEADER_NAME);
 			
-			if(token != null){
+			if(StringUtils.hasText(token)){
 				try{
 					Authentication authentication = tokenService.parseUserFromJwtToken(token);
 					SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -44,8 +45,7 @@ public class JwtFilter extends OncePerRequestFilter {
 					AccessDeniedHandler acc = new AccessDeniedHandlerImpl();
 					acc.handle(request, response, ade);
 					return;
-				}
-				
+				}				
 			}else{
 				SecurityContextHolder.getContext().setAuthentication(null);		
 			}		

@@ -17,7 +17,9 @@ angular.module('myApp', ['ngResource', 'ui.router', 'ui.bootstrap', 'ngStorage']
         });
 	})
 	.config(function($httpProvider, $localStorageProvider){
-		$httpProvider.defaults.headers.common['X-AUTH-TOKEN'] = $localStorageProvider.get('jwtAuth');
+		if($localStorageProvider.get('jwtAuth')){
+			$httpProvider.defaults.headers.common['X-AUTH-TOKEN'] = $localStorageProvider.get('jwtAuth');
+		}
 	});
 
 
