@@ -7,7 +7,6 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<groupId>com.nemeros.web</groupId>
 	<artifactId>hibernateApp</artifactId>	
 	<name>hibernateApp</name>
 	<packaging>jar</packaging>

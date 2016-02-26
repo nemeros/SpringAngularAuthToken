@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp', ['ngResource', 'ui.router', 'ui.bootstrap', 'ngStorage'])
+angular.module('myApp', ['ngResource', 'ui.router', 'ui.bootstrap', 'ngStorage', 'angular-jwt'])
 
 	//route config
 	.config(function($stateProvider, $urlRouterProvider){

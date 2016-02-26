@@ -19,7 +19,7 @@ angular.module('myApp')
 	    		url: 'http://localhost:8080/auth'
 	    	}).then(function succesCallback(response){
 	    		delete $localStorage.jwtAuth;
-	    		$localStorage.jwtAuth = response.data.token;
+	    		$localStorage.jwtAuth = response.headers('X-AUTH-TOKEN');
 	    		$http.defaults.headers.common['X-AUTH-TOKEN'] = $localStorage.jwtAuth;
 	    		$scope.error = null;
 	    		$state.go('main', null, {reload: true});

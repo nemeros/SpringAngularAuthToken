@@ -9,7 +9,6 @@
 	
 	<!-- Description du Projet -->
 	<artifactId>staticApp</artifactId>
-	<version>1.0.0</version>
 	<name>staticApp</name>
 	<packaging>war</packaging>
 
@@ -22,7 +21,7 @@
 			  <executions>
 				<execution>
 				  <id>exec-npm-install</id>
-				  <phase>install</phase>
+				  <phase>compile</phase>
 				  <configuration>
 					<executable>npm</executable>
 					<arguments>
@@ -35,7 +34,7 @@
 				</execution>
 				<execution>
 				  <id>exec-bower-install</id>
-				  <phase>install</phase>
+				  <phase>compile</phase>
 				  <configuration>
 					<executable>bower</executable>
 					<arguments>
@@ -55,7 +54,7 @@
 				  <execution>
 					<id>copy-resources</id>
 					<!-- here the phase you need -->
-					<phase>install</phase>
+					<phase>compile</phase>
 					<goals>
 					  <goal>copy-resources</goal>
 					</goals>

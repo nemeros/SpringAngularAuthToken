@@ -23,8 +23,6 @@ angular.module('myApp')
 
 	        $scope.save = function () {
 	            $scope.isSaving = true;
-	            $log.info('role : ' + angular.toJson($scope.role));
-	            $log.info('user : ' + angular.toJson($scope.user));
 	            if ($scope.role.id != null) {
 	                Role.update($scope.role, onSaveSuccess, onSaveError);
 	            } else {

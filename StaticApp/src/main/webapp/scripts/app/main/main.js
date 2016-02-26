@@ -7,7 +7,8 @@ angular.module('myApp')
             url: '/',
             views: {
                 'content@': {
-                    templateUrl: 'scripts/app/main/main.html'
+                    templateUrl: 'scripts/app/main/main.html',
+                    controller: 'mainController'
                 }
             }
 		})

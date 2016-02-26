@@ -19,10 +19,10 @@
     "angular": "angularjs#^1.5.0",
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.0",
-    "angular-route": "^1.5.0",
     "angular-resource": "^1.5.0",
     "angular-ui-router": "^0.2.18",
     "angular-bootstrap": "^1.1.2",
-    "ngstorage": "^0.3.10"
+    "ngstorage": "^0.3.10",
+    "angular-jwt": "^0.0.9"
   }
 }
