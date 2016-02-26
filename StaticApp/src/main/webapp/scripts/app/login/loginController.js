@@ -5,7 +5,6 @@ angular.module('myApp')
     $scope.error = null;
    
     $scope.submit = function () {
-    	
     	if($scope.loginForm.$invalid){
     		$scope.error = $scope.loginForm.$error;
     	}else{

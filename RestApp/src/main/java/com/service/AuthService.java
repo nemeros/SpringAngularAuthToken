@@ -62,7 +62,7 @@ public class AuthService {
 			}
 		}
 		
-		return new ResponseEntity<AuthResponse>(new AuthResponse(token), HttpStatus.OK);
+		return new ResponseEntity<AuthResponse>(new AuthResponse(true), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("unused")
@@ -73,10 +73,10 @@ public class AuthService {
 	
 	@SuppressWarnings("unused")
 	private static class AuthResponse{
-		public String token;
+		public boolean isLogged;
 		
-		public AuthResponse(String token){
-			this.token = token;
+		public AuthResponse(boolean isLogged){
+			this.isLogged = isLogged;
 		}
 	}
 }
