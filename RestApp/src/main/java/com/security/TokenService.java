@@ -23,6 +23,7 @@ import io.jsonwebtoken.SignatureException;
 public class TokenService {
 
 	private final static String secret = "aRt8kL98Edf";
+	private final static int EXPIRATION_TIME = 1000 * 60 * 60;
 	
 	/**
 	 * Retreive the User detaisl from the Jwt Token
@@ -68,7 +69,7 @@ public class TokenService {
 		
 		return Jwts.builder().setSubject(user.getUsername())
 			.claim("roles", lFormated.toArray())
-			.setIssuedAt(new Date())
+			.setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + TokenService.EXPIRATION_TIME))
 			.signWith(SignatureAlgorithm.HS256, secret).compact();
 	}
 }
