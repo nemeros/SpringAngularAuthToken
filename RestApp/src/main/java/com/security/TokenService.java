@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
